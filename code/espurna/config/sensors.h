@@ -877,6 +877,44 @@
 #define EZOPH_SYNC_INTERVAL          1000    // Amount of time (in ms) sync new readings.
 #endif
 
+//------------------------------------------------------------------------------ 
+//  Weather Station sensor with a 433Mhz reveiver. 
+//  Manchester code (like Oregon Scientific)
+//------------------------------------------------------------------------------
+
+#ifndef OOK_DECODER_SUPPORT
+#define OOK_DECODER_SUPPORT                  0       // Do not build with ook decoder support by default
+#endif
+
+#ifndef OOK_DECODER_PIN
+#define OOK_DECODER_PIN                     3 //3//1 4       // GPIO to monitor
+#endif
+
+#ifndef OOK_DECODER_MODE
+#define OOK_DECODER_MODE                    INPUT   // INPUT, INPUT_PULLUP
+#endif
+
+#ifndef OOK_DECODER_INTERRUPT_MODE
+#define OOK_DECODER_INTERRUPT_MODE          CHANGE  // RISING, FALLING, CHANGE
+#endif
+
+#ifndef OOK_DECODER_SENSORS_ADDR 
+#define OOK_DECODER_SENSORS_ADDR            {0xEA4C3502, 0x1A2D4701, 0x1A2D1F03} // 0xMMMMIICC 
+#endif                        // MMMM->model II->Id(change every battery replacement) CC->channel 
+ 
+#ifndef OOK_DECODER_AUTODISCOVER_ADDR
+#define OOK_DECODER_AUTODISCOVER_ADDR       0       // if true registrer detected sensor by order of detection
+#endif
+
+#ifndef OOK_DECODER_SENSORS_MAX_NUMBER
+#define OOK_DECODER_SENSORS_MAX_NUMBER      15       // Max sensors-magnitudes to register
+#endif
+
+#ifndef OOK_DECODER_AUTODISCOVER_WAIT_TIME
+#define OOK_DECODER_AUTODISCOVER_WAIT_TIME  150     // seconds for waiting to detect sensors.
+#endif
+
+
 // =============================================================================
 // Sensor helpers configuration - can't move to dependencies.h
 // =============================================================================

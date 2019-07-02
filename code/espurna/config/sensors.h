@@ -1098,4 +1098,8 @@
     #include "../sensors/VL53L1XSensor.h"
 #endif
 
+#if OOK_DECODER_SUPPORT
+    #include "../sensors/OOKDecoderSensor.h"
+#endif
+
 #endif // SENSOR_SUPPORT

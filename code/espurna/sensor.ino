@@ -821,6 +821,17 @@ void _sensorLoad() {
         _sensors.push_back(sensor);
     }
     #endif
+
+    //osr
+    #if OOK_DECODER_SUPPORT
+    {
+        OOKDecoderSensor * sensor = new OOKDecoderSensor();
+        sensor->setGPIO(OOK_DECODER_PIN);
+        sensor->setPinMode(OOK_DECODER_MODE);
+        sensor->setInterruptMode(OOK_DECODER_INTERRUPT_MODE);
+        _sensors.push_back(sensor);
+    }
+    #endif
 }
 
 void _sensorCallback(unsigned char i, unsigned char type, double value) {
@@ -1403,9 +1414,9 @@ void sensorLoop() {
             _sensorInit();
         }
     }
-
+    #ifndef OOK_DECODER_SUPPORT   //osr
     if (_magnitudes.size() == 0) return;
-
+    #endif
     // Tick hook
     _sensorTick();
 
